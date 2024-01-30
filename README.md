@@ -12,7 +12,7 @@ IMPORTANT! Open chat with your bot and send /start to the chat!
 1. Clone this repository to your local machine (`git clone https://github.com/danijcom/xai-node-rewards-monitor.git`)
 2. Go to the downloaded folder (`cd xai-node-rewards-monitor`)
 3. Install requirements (`python3 -m pip install -r requirements.txt`)
-4. Edit `example_config.json` (you can use `nano example_config.json`) (check the config section below to find out the meaning of config values).
+4. Edit `example_config.json` (you can use `nano example_config.json`) (check the config [section below](https://github.com/danijcom/xai-node-rewards-monitor?tab=readme-ov-file#config) to find out the meaning of config values).
 5. Rename `example_config.json` to `config.json` (`mv example_config.json config.json`)
 6. Start script (`python3 main.py`) (to run it in the background you can use `nohup python3 main.py &` or refer to [this guide](https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267) to setup systemd daemon for your script
 7. Enjoy getting notifications on your esXAI rewards!
