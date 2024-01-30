@@ -50,4 +50,6 @@ If you have more than 1 key it should look like that:
   }
 ```
 
+Note that [ArbiScan Free Tier](https://docs.arbiscan.io/support/rate-limits) allows you to send about 100.000 requests per day, so if you have more than 130 wallets, you should adjust `checks_timeout_minutes`
+
 Hope you got it!
