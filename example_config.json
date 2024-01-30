@@ -1,0 +1,15 @@
+{
+  "checks_timeout_minutes": 2,
+  "bot_settings": {
+    "api_key": "YOUR_BOT_API_KEY",
+    "receiver_telegram_id": "TELEGRAM_CHAT_ID_FOR_NOTIFICATIONS"
+  },
+  "arbitrum": {
+    "arbiscan_api_key": "ARBISCAN_API_KEY",
+    "xai_contract": "0x4C749d097832DE2FEcc989ce18fDc5f1BD76700c"
+  },
+  "wallets": {
+    "KEY1_NAME": "KEY1_ADDRESS",
+    "KEY2_NAME": "KEY2_ADDRESS"
+  }
+}
