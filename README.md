@@ -1,4 +1,4 @@
-# XAI node rewards monitor
+# [XAI](https://xai.games/sentrynodes) node rewards monitor
 A simple script to monitor new esXAI token transfers from your node to your wallets
 
 # Requirements
@@ -15,7 +15,7 @@ IMPORTANT! Open chat with your bot and send /start to the chat!
 4. Edit `example_config.json` (you can use `nano example_config.json`) (check the config [section below](https://github.com/danijcom/xai-node-rewards-monitor?tab=readme-ov-file#config) to find out the meaning of config values).
 5. Rename `example_config.json` to `config.json` (`mv example_config.json config.json`)
 6. Start script (`python3 main.py`) (to run it in the background you can use `nohup python3 main.py &` or refer to [this guide](https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267) to setup systemd daemon for your script
-7. Enjoy getting notifications on your esXAI rewards!
+7. 🥳 Enjoy getting notifications on your esXAI rewards!
 
 # Config
 Your config is stored in the `config.json` file.
