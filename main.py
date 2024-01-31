@@ -8,7 +8,6 @@ import requests
 from typing import Union
 from pathlib import Path
 from datetime import datetime
-from decimal import Decimal, getcontext
 
 settings_filename = 'config.json'
 cache_filename = 'cache.json'
@@ -30,9 +29,7 @@ logging.basicConfig(
 
 # Convert wei (denomination of ether) to ether 1 Ether is equal to 10^18 Wei
 def wei_to_ether(wei_amount):
-    getcontext().prec = 2
-    wei_decimal = Decimal(wei_amount)
-    ether_amount = wei_decimal / Decimal(10)**18
+    ether_amount = int(wei_amount) / 10**18
     return ether_amount
 
 
