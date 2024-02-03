@@ -33,6 +33,13 @@ def wei_to_ether(wei_amount):
     return ether_amount
 
 
+# Get XAI price from Binance API
+def get_xai_price():
+    url = 'https://api.binance.com/api/v3/ticker/price?symbol=XAIUSDT'
+    response = requests.get(url).json()
+    return response['price']
+
+
 # Get token transaction by address and token contract address, requires ArbiScan API key
 def get_transactions(address: str, contract: str, api_key: str):
     url = f'https://api.arbiscan.io' \
@@ -135,6 +142,9 @@ if __name__ == '__main__':
 
     # Infinite loop for wallets monitoring
     while True:
+        # Cache for XAI price
+        xai_price = None
+
         # Processing wallets one by one
         for address_name in settings_json['wallets']:
             address = settings_json['wallets'][address_name]
@@ -161,8 +171,16 @@ if __name__ == '__main__':
                     if transaction_hash not in cache_json[address]:
                         logging.info('[{}] New transaction {}'.format(address_name, transaction_hash))
 
+                        if xai_price is None:
+                            try:
+                                xai_price = float(get_xai_price())
+                            except Exception as ex:
+                                logging.error('Failed to get XAI price: {}'.format(ex))
+
                         # Get human readable value in ether
                         amount = wei_to_ether(transaction['value'])
+                        # Amount in USD (yep, I know about vesting and all of that, but still its fun to know the price
+                        amount_usd = '?' if xai_price is None else xai_price * amount
                         # Transaction on ArbiScan
                         transaction_url = 'https://arbiscan.io/tx/' + transaction['hash']
                         # Convert timestamp to readable date
@@ -174,6 +192,7 @@ if __name__ == '__main__':
                         cache_json[address][transaction_hash] = {
                             'amount': '{:.2f}'.format(amount),
                             'amount_wei': transaction['value'],
+                            'amount_usd': None if amount_usd == '?' else amount_usd,
                             'timestamp': transaction['timeStamp'],
                             'humanized_date': date_str
                         }
@@ -182,11 +201,15 @@ if __name__ == '__main__':
                         message_text = '🤑 <b>New {} token transfer!</b>\n\n' \
                                        '🔑 Key name: <b>{}</b>\n' \
                                        '💰 Amount: <b>{:.2f} {}</b>\n' \
+                                       '💲 Amount USD: <b>${} {}</b>\n' \
                                        '📆 Date: <code>{}</code>\n\n' \
                                        '📎 <b>Transaction:</b> {}'.format(
                                             transaction['tokenName'],
                                             address_name,
-                                            amount, transaction['tokenName'],
+                                            amount,
+                                            transaction['tokenName'],
+                                            amount_usd if type(amount_usd) == str else '{:.1f}'.format(amount_usd),
+                                            '' if xai_price is None else '(1 XAI = ${:.2f})'.format(xai_price),
                                             date_str,
                                             transaction_url,
                                        )
