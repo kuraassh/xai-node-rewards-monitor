@@ -1,6 +1,8 @@
 # [XAI](https://xai.games/sentrynodes) node rewards monitor
 A simple script to monitor new esXAI token transfers from your node to your wallets
 
+<img width="334" alt="Screenshot_90" src="https://github.com/danijcom/xai-node-rewards-monitor/assets/46953160/0281f586-275c-43c6-87a3-a28f7d5a5b94">
+
 # Requirements
 All that you need is Python (tested on Python3.9), Telegram Bot API key, and [ArbiScan](https://arbiscan.io/) API key (it is free)
 
@@ -25,7 +27,7 @@ Main values to edit:
 
 `api_key` in `bot_setting` section. Put there your bot API key from @BotFather.
 
-`receiver_telegram_id`. Put there user/group Telegram ID to get notifications. If it is the ID of the user - make sure you send `/start` to your bot before running the script. Telegram ID can be obtained using [this bot](https://t.me/myidbot)
+`receiver_telegram_id`. Put there user/group Telegram ID to get notifications. If it is the ID of the user - make sure you send `/start` to your bot before running the script, if it if of a group - add your bot to a group with send messages allowance. Telegram ID can be obtained using [this bot](https://t.me/myidbot)
 
 `arbiscan_api_key` in `arbitrum` section. Put there your API key from [ArbiScan](https://arbiscan.io/).
 
